@@ -8,12 +8,14 @@ from django.contrib import messages
 
 def weather(request):
     url = 'http://api.openweathermap.org./data/2.5/weather?appid=0b634b858dce0e6dc5b6c3b66470bf02&units=metric&q='
+    
     if request.method == 'POST':
         form = CityForm(request.POST)
         form.save()
     form = CityForm()
     cities = City.objects.all()
     weather_data = []
+    
     if cities:
         for city in cities:
             data_url = url + str(city)
@@ -33,22 +35,26 @@ def home(request):
 
 def add(request):
     jobs=Job.objects.all()
+    
     if request.method=='POST':
         firstname=request.POST['firstname']
         lastname=request.POST['lastname']
         age=request.POST['age']
-        User.objects.create(firstname=firstname, lastname=lastname, age=age)
+        job_id=request.POST['job_id']
+        User.objects.create(firstname=firstname, lastname=lastname, age=age, job_id=job_id)
         messages.success(request, 'User has been added')
     return render(request, 'add.html', {'jobs':jobs})
 
 def update(request,id):
     user=User.objects.get(id=id)
     jobs=Job.objects.all()
+
     if request.method=='POST':
         firstname=request.POST['firstname']
         lastname=request.POST['lastname']
         age=request.POST['age']
-        User.objects.filter(id=id).update(firstname=firstname, lastname=lastname, age=age)
+        job_id=request.POST['job_id']
+        User.objects.filter(id=id).update(firstname=firstname, lastname=lastname, age=age, job_id=job_id)
         messages.success(request, 'User has been updated')
     return render(request, 'update.html',{'user':user, 'jobs':jobs})
 

@@ -39,9 +39,9 @@
                     <th>Job</th>
                             <td>
                                 <div class="form-group" method="POST">
-                                    <select name="job" class="form-control" id="exampleFormControlSelect1">
+                                    <select name="job_id" class="form-control" id="exampleFormControlSelect1">
                                         {% for job in jobs %}
-                                        <option>{{job.name}}</option>
+                                        <option value="{{job.id}}">{{job.name}}</option>
                                         {% endfor %}
                                     </select>
                                   </div>

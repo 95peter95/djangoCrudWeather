@@ -35,22 +35,19 @@
                             <td><input type="text" name="age" class="form-control"></td>
                     </td>
                 </tr>
-
                 <tr>
                     <th>Job</th>
                             <td>
                                 <div class="form-group" method="POST">
-                                    <select name="job" class="form-control" id="exampleFormControlSelect1">
+                                    <select name="job_id" class="form-control" id="exampleFormControlSelect1">
                                         {% for job in jobs %}
-                                        <option>{{job.name}}</option>
+                                        <option value="{{job.id}}">{{job.name}}</option>
                                         {% endfor %}
                                     </select>
-                                  </div>
-                                  
+                                  </div>     
                             </td>
                     </td>
                 </tr>
-                
                     <tr>
                         <td colspan="2"><button type="submit" class="btn btn-primary"> Add </button></td>
                     </tr>
